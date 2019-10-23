@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify, make_response, url_for
 import logging, json, os
 
-from api.validator import (
+from foodmania.validator import (
     DriversRequestValidator, DriverLocationRequestValidator,
     json_file_validator
 
 )
 
-from api.return_message import (
+from foodmania.return_message import (
     return_message, success_message
 )
 
@@ -17,10 +17,12 @@ validators = {
 }
 
 app = Flask(__name__)
-app.config.from_object('api.config.ProductionConfig')
+app.config.from_object('foodmania.config.ProductionConfig')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from api.models import *
+from foodmania.models import (
+    Restaurants, Zones, RestaurantScore
+)
 
 @app.route('/', methods=['GET'])
 def hello():

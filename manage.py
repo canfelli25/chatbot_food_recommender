@@ -1,7 +1,8 @@
 import sys, pytest, random
 from flask_script import Manager, Command
 from flask_migrate import Migrate, MigrateCommand
-from app import app, db
+from app import app
+from foodmania.models import db
 
 migrate = Migrate(app, db)
 manager = Manager(app)
