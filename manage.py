@@ -33,8 +33,8 @@ class Seed(Command):
 
 manager.add_command('db', MigrateCommand)
 manager.add_command('runserver', Runserver())
-manager.add_command('test', Test())
-manager.add_command('seed', Seed())
+# manager.add_command('test', Test())
+# manager.add_command('seed', Seed())
 
 
 if __name__ == '__main__':
