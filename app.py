@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify, make_response, url_for
 import logging, json, os
 
-from api.validator import (
+from .api.validator import (
     DriversRequestValidator, DriverLocationRequestValidator,
     json_file_validator
 
 )
 
-from api.return_message import (
+from .api.return_message import (
     return_message, success_message
 )
 
@@ -20,7 +20,7 @@ app = Flask(__name__)
 app.config.from_object('api.config.ProductionConfig')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from api.models import *
+from .api.models import *
 
 @app.route('/', methods=['GET'])
 def hello():
