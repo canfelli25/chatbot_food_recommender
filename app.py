@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, make_response, url_for
-from flask_sqlalchemy import SQLAlchemy
 import logging, json, os
 
 from api.validator import (
@@ -20,11 +19,8 @@ validators = {
 app = Flask(__name__)
 app.config.from_object('api.config.ProductionConfig')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-from api.models import (
-    Restaurants, Zones, RestaurantScore
-)
+from api.models import *
 
 @app.route('/', methods=['GET'])
 def hello():
