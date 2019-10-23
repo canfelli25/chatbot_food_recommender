@@ -22,7 +22,9 @@ app.config.from_object('api.config.ProductionConfig')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from api.models import *
+from api.models import (
+    Restaurants, Zones, RestaurantScore
+)
 
 @app.route('/', methods=['GET'])
 def hello():
