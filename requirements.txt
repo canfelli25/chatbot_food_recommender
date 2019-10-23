@@ -48,3 +48,4 @@ wincertstore==0.2
 wrapt==1.11.2
 zipp==0.5.2
 psycopg2==2.8.3
+gunicorn== 19.9.0
