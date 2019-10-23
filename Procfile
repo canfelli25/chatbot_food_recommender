@@ -1,2 +1,2 @@
-web: gunicorn src.app:app --log-file=-
 db: ./entrypoint.sh 
+web: python manage.py runserver $PORT
