@@ -1,1 +1,2 @@
-web: ./entrypoint.sh 
+web: gunicorn src.app:app --log-file=-
+db: ./entrypoint.sh 
