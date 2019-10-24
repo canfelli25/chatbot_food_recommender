@@ -67,7 +67,7 @@ def upload_restaurants_score():
         if json_file is None:
             return return_message(421, "invalidFile", "Only json files allowed"), 421
 
-        RestaurantScore.add_retaurant_score_bulk(json_file['data'])
+        RestaurantScore.add_restaurant_score_bulk(json_file['data'])
             
         return success_message("New restaurants'score succesfully added")
     except Exception as e:
