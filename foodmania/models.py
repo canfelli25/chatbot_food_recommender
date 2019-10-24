@@ -77,7 +77,7 @@ class RestaurantScore(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     res_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
     score = db.Column(db.ARRAY(db.String, dimensions=1))
-    score = relationship("Restaurants", uselist=False, back_populates="score")
+    restaurant = relationship("Restaurants", uselist=False, back_populates="score")
 
     @classmethod
     def add_restaurant_score_bulk(cls, res_score):
