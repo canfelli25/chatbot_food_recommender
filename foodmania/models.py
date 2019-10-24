@@ -92,4 +92,5 @@ class RestaurantScore(db.Model):
 
 
 db.Index('zone_name', Zones.zone_name)
+db.Index('locality', Restaurants.location_locality)
     
