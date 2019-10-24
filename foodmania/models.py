@@ -16,6 +16,7 @@ class Restaurants(db.Model):
     location_city = db.Column(db.String)
     location_locality = db.Column(db.String)
     location_zone_id = db.Column(db.Integer)
+    lat_long = db.ARRAY(db.Float, as_tuple=True)
 
     @classmethod
     def add_restaurant_bulk(cls, restaurants, zone_id):
@@ -35,7 +36,8 @@ class Restaurants(db.Model):
                 location_address = res['location']['address'],
                 location_city = res['location']['city'],
                 location_locality = res['location']['locality'],
-                location_zone_id = int(zone_id)
+                location_zone_id = int(zone_id),
+                lat_long = (res['location']['latitude'], res['location']['longitude'])
             )
 
             rests.append(new_restaurant)
@@ -70,7 +72,7 @@ class RestaurantScore(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     res_id = db.Column(db.Integer)
-    score = db.Column(db.ARRAY(db.Float, dimensions=1))
+    score = db.Column(db.ARRAY(db.String, dimensions=1))
 
     @classmethod
     def add_retaurant_score_bulk(cls, res_score):
