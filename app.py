@@ -17,7 +17,7 @@ validators = {
 }
 
 app = Flask(__name__)
-app.config.from_object('foodmania.config.ProductionConfig')
+app.config.from_object('foodmania.config.DevelopmentConfig')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 from foodmania.models import (

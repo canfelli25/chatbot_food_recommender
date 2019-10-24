@@ -1,5 +1,7 @@
 from app import app
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+import logging
 
 db = SQLAlchemy(app)
 
@@ -15,11 +17,9 @@ class Restaurants(db.Model):
     location_address = db.Column(db.String)
     location_city = db.Column(db.String)
     location_locality = db.Column(db.String)
-    location_zone_id = db.Column(db.Integer, ForeignKey('.id'))
     lat_long = db.ARRAY(db.Float, as_tuple=True)
-
-    child_id = db,Column(Integer, ForeignKey('zones.id'))
-    child = relationship("Child")
+    location_zone_id = db.Column(db.Integer, db.ForeignKey('zones.id'))
+    location_zone = relationship("Zones")
 
     @classmethod
     def add_restaurant_bulk(cls, restaurants, zone_id):
@@ -53,7 +53,6 @@ class Zones(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     zone_name = db.Column(db.VARCHAR(length=255))
-    children = relationship("Child")
 
     @classmethod
     def add_zone_bulk(cls, zones):
@@ -79,7 +78,7 @@ class RestaurantScore(db.Model):
     score = db.Column(db.ARRAY(db.String, dimensions=1))
 
     @classmethod
-    def add_retaurant_score_bulk(cls, res_score):
+    def add_restaurant_score_bulk(cls, res_score):
         """Put a new restaurants in the database."""
 
         new_res_score = []
