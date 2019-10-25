@@ -21,6 +21,10 @@ class DriverLocationRequestValidator(Schema):
     longitude = fields.Float(required=True, validate=Range(min=-180.0, max=180.0))
     accuracy = fields.Float(required=True, validate=Range(min=0.0, max=1.0))
 
+class FoodRecommendationRequestValidator(Schema):
+    location = fields.String()
+    user_input = fields.String(required=True)
+
 def json_file_validator(file):
     try:
         files = file['file'].filename.split('.')
